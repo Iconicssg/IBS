@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Careers at Iconic Business Solutions — Explore job opportunities in HR, BPO, Recruitment, and Customer Experience in India.">
+  <meta name="keywords" content="Jobs, careers, Iconic Business Solutions jobs, recruitment jobs, BPO jobs, HR jobs, India jobs">
+  <title>Careers — Iconic Business Solutions</title>
+  <!-- Website Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo.png">
+  <link rel="shortcut icon" href="images/logo.png" type="image/png">
+  <link rel="preload" href="images/IMG1.jpeg" as="image">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* =============================================
+       CAREER PAGE — EXTRA STYLES
+       ============================================= */
+
+    /* ---- Why Join Us ---- */
+    .perks-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      background: var(--border-dark);
+      margin-top: 60px;
+    }
+    .perk-card {
+      background: var(--charcoal);
+      padding: 44px 28px;
+      text-align: center;
+      transition: var(--trans);
+      position: relative;
+      overflow: hidden;
+    }
+    .perk-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--trans);
+    }
+    .perk-card:hover { background: var(--dark); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .perk-card:hover::after { transform: scaleX(1); }
+    .perk-icon {
+      width: 68px; height: 68px;
+      background: linear-gradient(135deg, rgba(201,168,76,.12), rgba(201,168,76,.03));
+      border: 1px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; color: var(--gold);
+      margin: 0 auto 22px;
+      transition: var(--trans);
+    }
+    .perk-card:hover .perk-icon {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      transform: scale(1.1) rotate(8deg);
+      box-shadow: 0 6px 24px rgba(201,168,76,.3);
+    }
+    .perk-title {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 600;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .perk-text { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ---- Job Filter Tabs ---- */
+    .job-filters {
+      display: flex; gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 48px 0 36px;
+    }
+    .filter-btn {
+      padding: 9px 22px;
+      border: 1px solid var(--border-dark);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: var(--trans);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,.07);
+    }
+
+    /* ---- Jobs Grid ---- */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border-dark);
+    }
+    .job-card {
+      background: var(--charcoal);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--trans);
+      display: flex; flex-direction: column;
+    }
+    .job-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: linear-gradient(180deg, var(--gold-dark), var(--gold-light));
+      transition: var(--trans);
+    }
+    .job-card:hover { background: var(--dark); z-index: 2; box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .job-card:hover::before { height: 100%; }
+    .job-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border: 1px solid var(--border-gold);
+      background: rgba(201,168,76,.06);
+      border-radius: 2px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+    .job-title {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px; line-height: 1.3;
+    }
+    .job-meta {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 18px;
+    }
+    .job-meta-item {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 12.5px; color: var(--text-muted);
+    }
+    .job-meta-item i { color: var(--gold); width: 14px; font-size: 12px; }
+    .job-desc {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.8; margin-bottom: 24px;
+      flex: 1;
+    }
+    .job-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 24px;
+    }
+    .job-tag {
+      padding: 4px 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border-dark);
+      border-radius: 2px;
+      font-size: 11px; color: var(--silver);
+    }
+    .apply-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      font-family: var(--font-body);
+      cursor: pointer;
+      border-radius: 2px;
+      transition: var(--trans);
+      margin-top: auto;
+      width: fit-content;
+    }
+    .apply-btn:hover {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(201,168,76,.3);
+      transform: translateY(-1px);
+    }
+
+    /* ---- Application Form ---- */
+    .application-wrap {
+      background: var(--charcoal);
+      border: 1px solid var(--border-dark);
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 60px auto 0;
+    }
+    .application-header {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      padding: 36px 48px;
+      position: relative; overflow: hidden;
+    }
+    .application-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at right, rgba(255,255,255,.12), transparent);
+    }
+    .application-header > * { position: relative; z-index: 1; }
+    .application-header h3 {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 700;
+      color: var(--black); margin-bottom: 6px;
+    }
+    .application-header p { font-size: 14px; color: rgba(0,0,0,.65); }
+    .application-body { padding: 48px; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-full { grid-column: 1 / -1; }
+    .career-form label {
+      display: block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px;
+    }
+    .career-form input,
+    .career-form select,
+    .career-form textarea {
+      width: 100%; padding: 13px 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border-dark);
+      border-radius: 2px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 300;
+      outline: none; transition: var(--trans);
+      -webkit-appearance: none;
+    }
+    .career-form select option { background: var(--charcoal); }
+    .career-form input:focus,
+    .career-form select:focus,
+    .career-form textarea:focus {
+      border-color: var(--gold);
+      background: rgba(201,168,76,.04);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.08);
+    }
+    .career-form input::placeholder,
+    .career-form textarea::placeholder { color: rgba(136,136,128,.5); font-size: 13px; }
+    .career-form textarea { resize: vertical; min-height: 110px; }
+    .file-upload-wrap {
+      border: 1.5px dashed var(--border-gold);
+      border-radius: 4px;
+      padding: 28px;
+      text-align: center;
+      background: rgba(201,168,76,.03);
+      cursor: pointer;
+      transition: var(--trans);
+      position: relative;
+    }
+    .file-upload-wrap:hover { background: rgba(201,168,76,.07); border-color: var(--gold); }
+    .file-upload-wrap input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .file-upload-icon { font-size: 32px; color: var(--gold); margin-bottom: 10px; }
+    .file-upload-text { font-size: 13px; color: var(--text-muted); }
+    .file-upload-text strong { color: var(--gold); }
+    .file-hint { font-size: 11px; color: rgba(136,136,128,.6); margin-top: 6px; }
+    .form-submit-wrap { grid-column: 1 / -1; text-align: center; margin-top: 8px; }
+
+    /* ---- Employee Testimonials ---- */
+    .emp-testimonials {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+    .emp-card {
+      background: var(--charcoal);
+      border: 1px solid var(--border-dark);
+      border-radius: 4px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: var(--trans);
+      position: relative;
+    }
+    .emp-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4), var(--shadow-gold);
+    }
+    .emp-quote {
+      font-family: var(--font-display);
+      font-size: 72px; line-height: .7;
+      color: rgba(201,168,76,.1);
+      position: absolute; top: 20px; left: 24px;
+      user-select: none;
+    }
+    .emp-avatar {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 26px; font-weight: 700;
+      color: var(--black);
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 24px rgba(201,168,76,.25);
+    }
+    .emp-text {
+      font-family: var(--font-serif);
+      font-size: 15px; font-style: italic;
+      color: var(--text-light); line-height: 1.9;
+      margin-bottom: 24px; position: relative;
+    }
+    .emp-name {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 600;
+      color: var(--white); margin-bottom: 4px;
+    }
+    .emp-role { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); }
+
+    /* ---- Hiring Process Steps ---- */
+    .hiring-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      margin-top: 60px;
+      position: relative;
+    }
+    .hiring-steps::before {
+      content: '';
+      position: absolute;
+      top: 40px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), var(--gold), var(--border-gold), transparent);
+    }
+    .hiring-step { text-align: center; padding: 0 16px 40px; }
+    .step-num {
+      width: 80px; height: 80px;
+      background: var(--charcoal);
+      border: 2px solid var(--border-gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: var(--gold);
+      margin: 0 auto 24px; position: relative; z-index: 2;
+      transition: var(--trans);
+    }
+    .hiring-step:hover .step-num {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--black);
+      box-shadow: 0 0 28px rgba(201,168,76,.3);
+      transform: scale(1.08);
+    }
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 600;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ---- Open to All Banner ---- */
+    .open-banner {
+      background: linear-gradient(135deg, var(--mid-dark), var(--dark));
+      border: 1px solid var(--border-dark);
+      border-radius: 4px;
+      padding: 64px 80px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 40px;
+      position: relative; overflow: hidden;
+    }
+    .open-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at left center, rgba(201,168,76,.06), transparent 60%);
+    }
+    .open-banner > * { position: relative; z-index: 1; }
+    .open-banner h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 700; color: var(--white); margin-bottom: 10px;
+    }
+    .open-banner h3 span { color: var(--gold); }
+    .open-banner p { font-size: 15px; color: var(--text-muted); max-width: 520px; }
+    .open-banner-actions { display: flex; gap: 14px; flex-shrink: 0; flex-wrap: wrap; align-items: center; }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 1100px) {
+      .perks-grid { grid-template-columns: repeat(3, 1fr); }
+      .jobs-grid { grid-template-columns: repeat(2, 1fr); }
+      .hiring-steps { grid-template-columns: repeat(3, 1fr); }
+      .hiring-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .perks-grid { grid-template-columns: repeat(2, 1fr); }
+      .jobs-grid { grid-template-columns: 1fr; }
+      .emp-testimonials { grid-template-columns: 1fr; }
+      .application-body { padding: 28px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-full { grid-column: 1; }
+      .form-submit-wrap { grid-column: 1; }
+      .application-header { padding: 28px 24px; }
+      .open-banner { grid-template-columns: 1fr; padding: 40px 28px; }
+      .open-banner-actions { flex-direction: row; }
+      .hiring-steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .perks-grid { grid-template-columns: 1fr; }
+      .hiring-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="IS Logo" class="logo-icon">
+      <div class="logo-text">
+        <span class="logo-name">Iconic Business</span>
+        <span class="logo-tagline">Solutions</span>
+      </div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="services.html" class="nav-link">Services</a></li>
+      <li><a href="clients.html" class="nav-link">Clients</a></li>
+      <li><a href="career.html" class="nav-link active">Careers</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+      <li><a href="contact.html" class="nav-link nav-cta">Get Started</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ PAGE HERO ============ -->
+<section class="page-hero" style="padding-bottom:100px">
+  <div class="container">
+    <span class="section-label">Join Our Team</span>
+    <h1 class="page-hero-title">Build Your Career<br>With <span>Iconic</span></h1>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">—</span>
+      <span>Careers</span>
+    </div>
+    <div style="margin-top:32px;display:flex;gap:16px;flex-wrap:wrap">
+      <a href="#open-positions" class="btn-gold"><span>View Open Roles</span> <i class="fas fa-arrow-down"></i></a>
+      <a href="#apply-form" class="btn-outline"><i class="fas fa-file-alt"></i> Apply Now</a>
+    </div>
+    <!-- Quick Stats -->
+    <div style="display:flex;gap:48px;margin-top:56px;padding-top:36px;border-top:1px solid var(--border-dark);flex-wrap:wrap">
+      <div>
+        <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);display:block;line-height:1" data-counter data-target="50">0</span>
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;display:block">Team Members</span>
+      </div>
+      <div>
+        <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);display:block;line-height:1" data-counter data-target="8">0</span>
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;display:block">Departments</span>
+      </div>
+      <div>
+        <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);display:block;line-height:1" data-counter data-target="95">0</span>
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;display:block">% Retention Rate</span>
+      </div>
+      <div>
+        <span style="font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--gold);display:block;line-height:1" data-counter data-target="12">0</span>
+        <span style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;display:block">Open Positions</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY JOIN US ============ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Why Join Us</span>
+      <h2 class="section-title">The <span>Iconic</span> Workplace</h2>
+      <div class="divider-gold"></div>
+      <p class="section-desc">We invest in our people the same way we invest in our clients — with dedication, resources, and a genuine commitment to long-term success.</p>
+    </div>
+    <div class="perks-grid reveal">
+      <div class="perk-card">
+        <div class="perk-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="perk-title">Career Growth</div>
+        <div class="perk-text">Clear career paths and fast-track promotion opportunities for high performers.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="perk-title">Learning & Development</div>
+        <div class="perk-text">Continuous training, certifications, and skill enhancement programs funded by us.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon"><i class="fas fa-coins"></i></div>
+        <div class="perk-title">Competitive Salary</div>
+        <div class="perk-text">Attractive compensation packages, performance bonuses, and quarterly incentives.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon"><i class="fas fa-heart"></i></div>
+        <div class="perk-title">Health & Wellness</div>
+        <div class="perk-text">Comprehensive medical insurance and employee wellness programs.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon"><i class="fas fa-balance-scale"></i></div>
+        <div class="perk-title">Work-Life Balance</div>
+        <div class="perk-text">Flexible work arrangements, generous annual leave, and remote work options.</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border-dark);margin-top:2px" class="reveal">
+      <div style="background:var(--charcoal);padding:36px 32px;display:flex;align-items:flex-start;gap:16px;transition:var(--trans)" onmouseenter="this.style.background='var(--dark)'" onmouseleave="this.style.background='var(--charcoal)'">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.04));border:1px solid var(--border-gold);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;flex-shrink:0"><i class="fas fa-globe-asia"></i></div>
+        <div><div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px">Regional Exposure</div><div style="font-size:13px;color:var(--text-muted);line-height:1.7">Work with Singapore's leading corporations and gain exposure across Southeast Asia's fastest-growing markets.</div></div>
+      </div>
+      <div style="background:var(--charcoal);padding:36px 32px;display:flex;align-items:flex-start;gap:16px;transition:var(--trans)" onmouseenter="this.style.background='var(--dark)'" onmouseleave="this.style.background='var(--charcoal)'">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.04));border:1px solid var(--border-gold);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;flex-shrink:0"><i class="fas fa-users-cog"></i></div>
+        <div><div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px">Collaborative Culture</div><div style="font-size:13px;color:var(--text-muted);line-height:1.7">A diverse, inclusive, and supportive team environment where every voice is heard and valued.</div></div>
+      </div>
+      <div style="background:var(--charcoal);padding:36px 32px;display:flex;align-items:flex-start;gap:16px;transition:var(--trans)" onmouseenter="this.style.background='var(--dark)'" onmouseleave="this.style.background='var(--charcoal)'">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,rgba(201,168,76,.12),rgba(201,168,76,.04));border:1px solid var(--border-gold);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;flex-shrink:0"><i class="fas fa-award"></i></div>
+        <div><div style="font-size:14px;font-weight:600;color:var(--white);margin-bottom:6px">Recognition & Rewards</div><div style="font-size:13px;color:var(--text-muted);line-height:1.7">Regular recognition of outstanding performance with awards, incentives, and public appreciation.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN POSITIONS ============ -->
+<section class="section section-darker" id="open-positions">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Opportunities</span>
+      <h2 class="section-title"><span>Open</span> Positions</h2>
+      <div class="divider-gold"></div>
+      <p class="section-desc">Explore our current opportunities and find the role that matches your skills, ambition, and career goals.</p>
+    </div>
+    <div class="job-filters reveal">
+      <button class="filter-btn active" data-filter="all">All Roles</button>
+      <button class="filter-btn" data-filter="bpo">BPO</button>
+      <button class="filter-btn" data-filter="recruitment">Recruitment</button>
+      <button class="filter-btn" data-filter="sales">Sales</button>
+      <button class="filter-btn" data-filter="hr">HR</button>
+      <button class="filter-btn" data-filter="cx">CX</button>
+    </div>
+    <div class="jobs-grid reveal">
+
+      <!-- Job 1 -->
+      <div class="job-card" data-category="cx">
+        <div class="job-badge"><i class="fas fa-headset"></i> Customer Experience</div>
+        <h3 class="job-title">Customer Support Executive</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (On-site)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 0–2 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 2,500 – 3,500/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Handle customer inquiries, resolve complaints professionally, and deliver exceptional service through voice and digital channels. You'll be the front-line ambassador for our clients' brands.</p>
+        <div class="job-tags">
+          <span class="job-tag">Voice Support</span>
+          <span class="job-tag">Email</span>
+          <span class="job-tag">CRM</span>
+          <span class="job-tag">Entry Level</span>
+        </div>
+        <button class="apply-btn" data-position="Customer Support Executive">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="job-card" data-category="bpo">
+        <div class="job-badge"><i class="fas fa-laptop-code"></i> BPO</div>
+        <h3 class="job-title">Technical Support Executive</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (Hybrid)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 1–3 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 3,000 – 4,500/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Provide technical assistance, troubleshoot product and software issues, and ensure swift and accurate resolution of technical problems across multiple support channels.</p>
+        <div class="job-tags">
+          <span class="job-tag">L1/L2 Support</span>
+          <span class="job-tag">Troubleshooting</span>
+          <span class="job-tag">ITSM</span>
+          <span class="job-tag">Mid Level</span>
+        </div>
+        <button class="apply-btn" data-position="Technical Support Executive">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="job-card" data-category="recruitment">
+        <div class="job-badge"><i class="fas fa-user-tie"></i> Recruitment</div>
+        <h3 class="job-title">HR Recruiter</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (On-site)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 1–4 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 3,200 – 5,000/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Source and attract top candidates, conduct structured interviews, manage end-to-end recruitment pipelines, and build lasting talent networks for our diverse client portfolio.</p>
+        <div class="job-tags">
+          <span class="job-tag">Sourcing</span>
+          <span class="job-tag">Interviewing</span>
+          <span class="job-tag">LinkedIn</span>
+          <span class="job-tag">ATS</span>
+        </div>
+        <button class="apply-btn" data-position="HR Recruiter">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 4 -->
+      <div class="job-card" data-category="sales">
+        <div class="job-badge"><i class="fas fa-chart-line"></i> Sales</div>
+        <h3 class="job-title">Business Development Executive</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (Hybrid)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 1–3 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 3,500 – 6,000 + Commission</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Generate new business leads, pitch consultancy services to potential clients, nurture relationships, and exceed sales targets. Excellent earning potential with uncapped commissions.</p>
+        <div class="job-tags">
+          <span class="job-tag">B2B Sales</span>
+          <span class="job-tag">Lead Gen</span>
+          <span class="job-tag">Negotiation</span>
+          <span class="job-tag">CRM</span>
+        </div>
+        <button class="apply-btn" data-position="Business Development Executive">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 5 -->
+      <div class="job-card" data-category="bpo">
+        <div class="job-badge"><i class="fas fa-phone-volume"></i> BPO</div>
+        <h3 class="job-title">BPO Voice Process Associate</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (On-site)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 0–1 Year Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 2,200 – 3,000/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time (Shifts)</div>
+        </div>
+        <p class="job-desc">Handle inbound and outbound customer calls, deliver consistent and high-quality service, and maintain excellence in call quality, compliance, and first-call resolution metrics.</p>
+        <div class="job-tags">
+          <span class="job-tag">Inbound Calls</span>
+          <span class="job-tag">Outbound</span>
+          <span class="job-tag">FCR</span>
+          <span class="job-tag">Fresher OK</span>
+        </div>
+        <button class="apply-btn" data-position="BPO Voice Process Associate">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 6 -->
+      <div class="job-card" data-category="bpo">
+        <div class="job-badge"><i class="fas fa-keyboard"></i> BPO</div>
+        <h3 class="job-title">BPO Non-Voice Process Associate</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (Hybrid)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 0–1 Year Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 2,000 – 2,800/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Handle email support, live chat, data entry, and back-office processing with accuracy and efficiency. Perfect role for detail-oriented individuals who thrive in structured environments.</p>
+        <div class="job-tags">
+          <span class="job-tag">Email Support</span>
+          <span class="job-tag">Live Chat</span>
+          <span class="job-tag">Data Entry</span>
+          <span class="job-tag">Fresher OK</span>
+        </div>
+        <button class="apply-btn" data-position="BPO Non-Voice Process Associate">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 7 -->
+      <div class="job-card" data-category="hr">
+        <div class="job-badge"><i class="fas fa-users-cog"></i> HR</div>
+        <h3 class="job-title">HR Business Partner</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (On-site)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 3–6 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 5,000 – 8,000/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Partner with client leadership teams to deliver strategic HR advisory, workforce planning, performance management frameworks, and organizational development solutions.</p>
+        <div class="job-tags">
+          <span class="job-tag">HRBP</span>
+          <span class="job-tag">Strategic HR</span>
+          <span class="job-tag">OD</span>
+          <span class="job-tag">Senior Level</span>
+        </div>
+        <button class="apply-btn" data-position="HR Business Partner">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 8 -->
+      <div class="job-card" data-category="cx">
+        <div class="job-badge"><i class="fas fa-star"></i> CX</div>
+        <h3 class="job-title">CX Quality Analyst</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (Hybrid)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 2–4 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 3,500 – 5,500/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Monitor and evaluate customer interactions, identify quality gaps, provide coaching feedback to teams, and drive continuous improvement in service delivery standards across operations.</p>
+        <div class="job-tags">
+          <span class="job-tag">QA</span>
+          <span class="job-tag">Calibration</span>
+          <span class="job-tag">NPS</span>
+          <span class="job-tag">Mid Level</span>
+        </div>
+        <button class="apply-btn" data-position="CX Quality Analyst">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+      <!-- Job 9 -->
+      <div class="job-card" data-category="recruitment">
+        <div class="job-badge"><i class="fas fa-search"></i> Recruitment</div>
+        <h3 class="job-title">Senior Talent Acquisition Specialist</h3>
+        <div class="job-meta">
+          <div class="job-meta-item"><i class="fas fa-map-marker-alt"></i> Singapore (Hybrid)</div>
+          <div class="job-meta-item"><i class="fas fa-briefcase"></i> 4–7 Years Experience</div>
+          <div class="job-meta-item"><i class="fas fa-dollar-sign"></i> SGD 6,000 – 9,000/mo</div>
+          <div class="job-meta-item"><i class="fas fa-clock"></i> Full-Time</div>
+        </div>
+        <p class="job-desc">Lead executive-level searches, manage key client accounts, mentor junior recruiters, and develop innovative sourcing strategies to consistently deliver top-tier talent placements.</p>
+        <div class="job-tags">
+          <span class="job-tag">Executive Search</span>
+          <span class="job-tag">RPO</span>
+          <span class="job-tag">Account Mgmt</span>
+          <span class="job-tag">Senior</span>
+        </div>
+        <button class="apply-btn" data-position="Senior Talent Acquisition Specialist">
+          <i class="fas fa-paper-plane"></i> Apply Now
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HIRING PROCESS ============ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">Our <span>Hiring</span> Process</h2>
+      <div class="divider-gold"></div>
+      <p class="section-desc">A simple, transparent, and respectful process designed to find the best fit for both you and our team.</p>
+    </div>
+    <div class="hiring-steps">
+      <div class="hiring-step reveal">
+        <div class="step-num"><i class="fas fa-file-alt"></i></div>
+        <div class="step-title">Apply Online</div>
+        <div class="step-desc">Submit your application and resume through our form below.</div>
+      </div>
+      <div class="hiring-step reveal reveal-delay-1">
+        <div class="step-num"><i class="fas fa-phone"></i></div>
+        <div class="step-title">Screening Call</div>
+        <div class="step-desc">A 15–20 minute call with our HR team to discuss your background.</div>
+      </div>
+      <div class="hiring-step reveal reveal-delay-2">
+        <div class="step-num"><i class="fas fa-comments"></i></div>
+        <div class="step-title">Interview</div>
+        <div class="step-desc">Competency-based interview with the hiring manager and team.</div>
+      </div>
+      <div class="hiring-step reveal reveal-delay-3">
+        <div class="step-num"><i class="fas fa-clipboard-check"></i></div>
+        <div class="step-title">Assessment</div>
+        <div class="step-desc">A short role-specific task or skills assessment where applicable.</div>
+      </div>
+      <div class="hiring-step reveal reveal-delay-4">
+        <div class="step-num"><i class="fas fa-handshake"></i></div>
+        <div class="step-title">Offer & Join</div>
+        <div class="step-desc">Receive your offer letter and begin your Iconic journey!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPLICATION FORM ============ -->
+<section class="section section-darker" id="apply-form">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Apply Today</span>
+      <h2 class="section-title">Submit Your <span>Application</span></h2>
+      <div class="divider-gold"></div>
+      <p class="section-desc">Ready to take the next step? Fill out the form below and our talent team will be in touch within 2 business days.</p>
+    </div>
+    <div class="application-wrap reveal">
+      <div class="application-header">
+        <h3><i class="fas fa-file-user" style="margin-right:12px"></i>Job Application Form</h3>
+        <p>All fields marked with * are required. We respect your privacy and will never share your data.</p>
+      </div>
+      <div class="application-body">
+        <form id="careerForm" class="career-form" enctype="multipart/form-data">
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" required>
+            </div>
+
+            <div class="form-group">
+              <label for="city">City / Country *</label>
+              <input type="text" id="city" name="city" placeholder="Singapore" required>
+            </div>
+
+            <div class="form-group">
+              <label for="experience">Years of Experience *</label>
+              <select id="experience" name="experience" required>
+                <option value="" disabled selected>Select experience level</option>
+                <option value="fresher">Fresher (No Experience)</option>
+                <option value="0-1">0–1 Years</option>
+                <option value="1-3">1–3 Years</option>
+                <option value="3-5">3–5 Years</option>
+                <option value="5-8">5–8 Years</option>
+                <option value="8+">8+ Years</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="position">Position Applying For *</label>
+              <select id="position" name="position" required>
+                <option value="" disabled selected>Select a position</option>
+                <option>Customer Support Executive</option>
+                <option>Technical Support Executive</option>
+                <option>HR Recruiter</option>
+                <option>Business Development Executive</option>
+                <option>BPO Voice Process Associate</option>
+                <option>BPO Non-Voice Process Associate</option>
+                <option>HR Business Partner</option>
+                <option>CX Quality Analyst</option>
+                <option>Senior Talent Acquisition Specialist</option>
+                <option>Other / General Application</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="salary">Expected Salary (SGD/month)</label>
+              <input type="text" id="salary" name="salary" placeholder="e.g. SGD 3,500">
+            </div>
+
+            <div class="form-group">
+              <label for="notice">Notice Period / Availability</label>
+              <select id="notice" name="notice">
+                <option value="" disabled selected>Select availability</option>
+                <option>Immediately Available</option>
+                <option>1 Week</option>
+                <option>2 Weeks</option>
+                <option>1 Month</option>
+                <option>More than 1 Month</option>
+              </select>
+            </div>
+
+            <div class="form-group form-full">
+              <label>Upload Resume / CV *</label>
+              <div class="file-upload-wrap" id="file-drop-zone">
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                <div class="file-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="file-upload-text">
+                  <strong>Click to upload</strong> or drag & drop your CV here
+                </div>
+                <div class="file-hint" id="file-name-display">PDF, DOC, or DOCX — max 5MB</div>
+              </div>
+            </div>
+
+            <div class="form-group form-full">
+              <label for="linkedin">LinkedIn Profile URL</label>
+              <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+            </div>
+
+            <div class="form-group form-full">
+              <label for="coverLetter">Cover Letter / Why Iconic? *</label>
+              <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you want to join Iconic Business Solutions and what makes you the right fit for this role..." required></textarea>
+            </div>
+
+            <div class="form-submit-wrap">
+              <button type="submit" class="btn-gold" style="padding:16px 52px;font-size:12px">
+                <span>Submit Application</span> <i class="fas fa-paper-plane"></i>
+              </button>
+              <p style="font-size:11px;color:var(--text-muted);margin-top:12px;letter-spacing:0.5px">
+                <i class="fas fa-lock" style="color:var(--gold);margin-right:6px"></i>
+                Your data is protected and will never be shared without your consent.
+              </p>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMPLOYEE TESTIMONIALS ============ -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Our People</span>
+      <h2 class="section-title">Employee <span>Stories</span></h2>
+      <div class="divider-gold"></div>
+      <p class="section-desc">Hear directly from our team members about their growth journey at Iconic Business Solutions.</p>
+    </div>
+    <div class="emp-testimonials">
+      <div class="emp-card reveal">
+        <div class="emp-quote">"</div>
+        <div class="emp-avatar">AS</div>
+        <div class="stars" style="margin-bottom:16px">★★★★★</div>
+        <p class="emp-text">I joined Iconic as a junior recruiter fresh out of university. Within 18 months, I was promoted to Senior Recruiter and given my own client portfolio. The mentorship here is genuinely world-class.</p>
+        <div class="emp-name">Ankit Sharma</div>
+        <div class="emp-role">Senior Talent Acquisition Specialist</div>
+      </div>
+      <div class="emp-card reveal reveal-delay-2">
+        <div class="emp-quote">"</div>
+        <div class="emp-avatar">PV</div>
+        <div class="stars" style="margin-bottom:16px">★★★★★</div>
+        <p class="emp-text">The training programs at Iconic are exceptional. I've earned two professional HR certifications fully funded by the company. It's rare to find an employer that truly invests in your growth like this.</p>
+        <div class="emp-name">Priya Verma</div>
+        <div class="emp-role">HR Business Partner</div>
+      </div>
+      <div class="emp-card reveal reveal-delay-3">
+        <div class="emp-quote">"</div>
+        <div class="emp-avatar">RK</div>
+        <div class="stars" style="margin-bottom:16px">★★★★★</div>
+        <p class="emp-text">What sets Iconic apart is the culture — supportive, ambitious, and incredibly collaborative. I came from a completely different industry and they equipped me with everything I needed to thrive in BPO.</p>
+        <div class="emp-name">Rahul Kumar</div>
+        <div class="emp-role">BPO Operations Manager</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPEN TO ALL CTA ============ -->
+<section class="section section-darker">
+  <div class="container">
+    <div class="open-banner reveal">
+      <div>
+        <span class="section-label" style="margin-bottom:16px">Don't See Your Role?</span>
+        <h3>We're Always Looking for <span>Exceptional</span> Talent</h3>
+        <p style="margin-top:12px">Send us your CV and we'll reach out as soon as a suitable opportunity arises. Great talent never goes unnoticed at Iconic.</p>
+      </div>
+      <div class="open-banner-actions">
+        <a href="mailto:careers@iconicbusinesssolutions.com?subject=General Application — Iconic Business Solutions" class="btn-gold">
+          <i class="fas fa-envelope"></i> <span>Send Your CV</span>
+        </a>
+        <a href="https://wa.me/919226449358?text=Hello%20Iconic%20Business%20Solutions%2C%20I%20am%20interested%20in%20career%20opportunities." target="_blank" class="btn-outline">
+          <i class="fab fa-whatsapp"></i> WhatsApp HR
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="nav-logo" style="display:inline-flex">
+          <img src="images/logo.png" alt="IS Logo" class="logo-icon">
+          <div class="logo-text">
+            <span class="logo-name">Iconic Business</span>
+            <span class="logo-tagline">Solutions</span>
+          </div>
+        </a>
+        <p class="footer-brand-desc">India's premier corporate consultancy delivering excellence in BPO, recruitment, training, and customer experience management since 2022.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://wa.me/919226449358" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Our Services</a>
+          <a href="clients.html">Our Clients</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="services.html">Recruitment &amp; Talent</a>
+          <a href="services.html">Business Process Outsourcing</a>
+          <a href="services.html">Corporate Training</a>
+          <a href="services.html">Customer Experience</a>
+          <a href="services.html">HR Consulting</a>
+          <a href="services.html">Business Advisory</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact Us</div>
+        <div class="footer-ci"><i class="fas fa-map-marker-alt"></i> Iconic Business Solution, White Square, 304, Hinjewadi - Wakad Rd, Hinjawadi, Pimpri-Chinchwad, Maharashtra 411057</div>
+        <div class="footer-ci"><i class="fas fa-phone"></i> <a href="tel:+919226449358">+91 9226449358</a></div>
+        <div class="footer-ci"><i class="fas fa-envelope"></i> <a href="mailto:info@iconicbusinesssolution.com">info@iconicbusinesssolution.com</a></div>
+        <div class="footer-ci"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/919226449358" target="_blank">WhatsApp Us</a></div>
+        <div style="margin-top:18px">
+          <div class="footer-col-title">Legal</div>
+          <div class="footer-links">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Iconic Business Solutions Pte. Ltd. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING BUTTONS ===== -->
+<div class="floating-btns">
+  <a href="https://wa.me/919226449358" target="_blank" rel="noopener" class="fl-btn fl-wa" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="fl-tip">Chat on WhatsApp</span>
+  </a>
+  <a href="mailto:info@iconicbusinesssolution.com" class="fl-btn fl-email" title="Email">
+    <i class="fas fa-envelope"></i>
+    <span class="fl-tip">Send Email</span>
+  </a>
+  <button class="fl-btn fl-top" title="Back to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+</div>
+
+<!-- ===== CHATBOT ===== -->
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <div class="chat-av"><i class="fas fa-robot"></i></div>
+    <div>
+      <div class="chat-hname">IBS Assistant</div>
+      <div class="chat-hstatus">Online — Replies instantly</div>
+    </div>
+    <button class="chat-close" aria-label="Close chat">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" placeholder="Type your message..." aria-label="Chat message">
+    <button class="chat-send" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+<div class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+  <i class="fas fa-comments"></i>
+  <div class="chat-notif"></div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
+<script>
+  // ---- Apply button auto-fills position select & scrolls to form ----
+  document.querySelectorAll('.apply-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const pos = this.dataset.position;
+      const sel = document.getElementById('position');
+      if (sel) {
+        // Find matching option
+        for (let opt of sel.options) {
+          if (opt.value === pos) { sel.value = pos; break; }
+        }
+      }
+      document.getElementById('apply-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Highlight the form briefly
+      const wrap = document.querySelector('.application-wrap');
+      wrap.style.boxShadow = '0 0 0 2px var(--gold), 0 20px 60px rgba(0,0,0,.5)';
+      setTimeout(() => { wrap.style.boxShadow = ''; }, 1500);
+    });
+  });
+
+  // ---- Job category filter ----
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const jobCards = document.querySelectorAll('.job-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      jobCards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? 'flex' : 'none';
+        card.style.opacity = match ? '1' : '0';
+      });
+    });
+  });
+
+  // ---- File upload display ----
+  const resumeInput = document.getElementById('resume');
+  const fileDisplay = document.getElementById('file-name-display');
+  if (resumeInput) {
+    resumeInput.addEventListener('change', function () {
+      if (this.files.length > 0) {
+        fileDisplay.innerHTML = `<i class="fas fa-check-circle" style="color:var(--gold);margin-right:6px"></i><strong style="color:var(--gold)">${this.files[0].name}</strong> — Ready to upload`;
+      }
+    });
+  }
+
+  // ---- Career form submit ----
+  const careerForm = document.getElementById('careerForm');
+  if (careerForm) {
+    careerForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-check"></i> <span>Application Submitted!</span>';
+      btn.style.background = 'linear-gradient(135deg,#2d7a4a,#3d9a5a)';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.disabled = false;
+        this.reset();
+        fileDisplay.textContent = 'PDF, DOC, or DOCX — max 5MB';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 4000);
+    });
+  }
+</script>
+
+</body>
+</html>
