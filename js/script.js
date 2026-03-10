@@ -1,5 +1,5 @@
 /* ============================================================
-   ICONIC BUSINESS SOLUTIONS — MAIN JS (FULLY FIXED)
+   ICONIC BUSINESS SOLUTION — MAIN JS (FULLY FIXED)
    ============================================================ */
 
 (function () {
@@ -96,7 +96,7 @@
   if (typingEl) {
     var phrases = [
       'Business Process Outsourcing',
-      'Recruitment & Talent Solutions',
+      'Recruitment & Talent Solution',
       'Corporate Training Programs',
       'Customer Experience Management',
       'HR & Workforce Consulting',
@@ -265,15 +265,15 @@
   if (!chatToggle || !chatWindow) return; /* Safety guard */
 
   var botReplies = {
-    greet:     'Welcome to Iconic Business Solutions! 👋\n\nI\'m your virtual assistant. How can I help you today?\n\nYou can ask about our services, recruitment, training, BPO, or contact information.',
+    greet:     'Welcome to Iconic Business Solution! 👋\n\nI\'m your virtual assistant. How can I help you today?\n\nYou can ask about our services, recruitment, training, BPO, or contact information.',
     services:  'We offer 6 core services:\n\n• Recruitment & Talent Acquisition\n• Business Process Outsourcing (BPO)\n• Corporate Training & Development\n• Customer Experience Management\n• HR & Workforce Consulting\n• Strategic Business Advisory\n\nWhich service interests you most?',
     recruitment:'Our Recruitment Services include:\n\n• Executive & C-suite search\n• Volume & RPO hiring\n• Candidate screening & assessment\n• Psychometric testing\n• Onboarding support\n• Contract & permanent staffing\n\nWe have a vast network across India & SEA.',
-    bpo:       'Our BPO Solutions include:\n\n• Customer support operations\n• Technical helpdesk\n• Back-office processing\n• Data entry & management\n• Finance & accounting BPO\n• 24/7 SLA-driven operations\n\nClients typically see 30–40% cost reduction.',
+    bpo:       'Our BPO Solution include:\n\n• Customer support operations\n• Technical helpdesk\n• Back-office processing\n• Data entry & management\n• Finance & accounting BPO\n• 24/7 SLA-driven operations\n\nClients typically see 30–40% cost reduction.',
     training:  'Our Training Programs cover:\n\n• Leadership Development\n• Communication & Soft Skills\n• Customer Service Excellence\n• Sales & Negotiation\n• Compliance & Risk\n• Digital Literacy\n\nAll programs are fully customized to your needs.',
     cx:        'Our Customer Experience services include:\n\n• CX Strategy Design\n• Omnichannel Support Setup\n• NPS & CSAT Improvement\n• Voice of Customer Programs\n• CX Team Training\n\nWe\'ve helped clients improve NPS scores by 30+ points.',
     hr:        'Our HR & Workforce Consulting covers:\n\n• HR Transformation\n• Workforce Planning\n• Performance Management\n• HR Policy Development\n• Compensation & Benefits Review\n\nWe align your people strategy with business goals.',
     contact:   'Reach us through:\n\n📞 +91 9226449358\n📧 info@iconicbusinesssolution.com\n📍 Iconic Business Solution, White Square, 304, Hinjewadi - Wakad Rd, Hinjawadi, Pimpri-Chinchwad, Maharashtra 411057\n⏰ Mon–Fri: 10:00 AM – 6:00 PM IST\n💬 WhatsApp button on this page!\n\nWe typically respond within 2 business hours.',
-    about:     'Iconic Business Solutions is India\'s premier corporate consultancy, founded in 2022.\n\nWe specialize in BPO, recruitment, training, and CX management.\n\n✅ 500+ clients served\n✅ 4+ years of excellence\n✅ 15+ industries covered\n✅ 98% client satisfaction rate',
+    about:     'Iconic Business Solution is India\'s premier corporate consultancy, founded in 2022.\n\nWe specialize in BPO, recruitment, training, and CX management.\n\n✅ 500+ clients served\n✅ 4+ years of excellence\n✅ 15+ industries covered\n✅ 98% client satisfaction rate',
     clients:   'We proudly serve clients across:\n\n• Technology & Fintech\n• Banking & Finance\n• Telecommunications\n• Retail & E-Commerce\n• Healthcare\n• Logistics & Supply Chain\n• Hospitality\n• Government-linked companies\n\nIncludes Singtel, DBS, Grab, and many more.',
     careers:   'Looking for a job? We place candidates in roles across India and SEA.\n\nSend your CV to: info@iconicbusinesssolution.com\n\nOr call us at +91 9226449358 to speak with our recruitment team.',
     default:   'Thank you for your message! 😊\n\nFor detailed enquiries, please reach us:\n📧 info@iconicbusinesssolution.com\n📞 +91 9226449358\n\nOr click the WhatsApp button to chat instantly with our team!'
@@ -282,7 +282,7 @@
   var quickOpts = [
     { label: 'Our Services',    key: 'services'    },
     { label: 'Recruitment',     key: 'recruitment' },
-    { label: 'BPO Solutions',   key: 'bpo'         },
+    { label: 'BPO Solution',   key: 'bpo'         },
     { label: 'Contact Info',    key: 'contact'     }
   ];
 
@@ -355,7 +355,7 @@
     if (chatNotif) chatNotif.style.display = 'none';
     if (chatWindow.classList.contains('open') && chatMsgs.children.length === 0) {
       setTimeout(function () {
-        addMsg('Welcome to Iconic Business Solutions! 👋\n\nI\'m your virtual assistant. How can I help you today?', 'bot', true);
+        addMsg('Welcome to Iconic Business Solution! 👋\n\nI\'m your virtual assistant. How can I help you today?', 'bot', true);
       }, 400);
     }
   });

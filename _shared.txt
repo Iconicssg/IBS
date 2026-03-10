@@ -3,7 +3,7 @@ NAV:
   <div class="nav-container">
     <a href="index.html" class="nav-logo">
       <div class="logo-icon">IS</div>
-      <div class="logo-text"><span class="logo-name">Iconic Business</span><span class="logo-tagline">Solutions</span></div>
+      <div class="logo-text"><span class="logo-name">Iconic Business</span><span class="logo-tagline">Solution</span></div>
     </a>
     <ul class="nav-menu">
       <li><a href="index.html" class="nav-link">Home</a></li>
