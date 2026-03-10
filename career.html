@@ -891,7 +891,7 @@
               </div>
             </div>
 
-            <div class="form-group form-full">
+            <!-- <div class="form-group form-full">
               <label for="linkedin">LinkedIn Profile URL</label>
               <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
             </div>
@@ -899,7 +899,7 @@
             <div class="form-group form-full">
               <label for="coverLetter">Cover Letter / Why Iconic Business Solution? *</label>
               <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you want to join Iconic Business Solution and what makes you the right fit for this role..." required></textarea>
-            </div>
+            </div> -->
 
             <div class="form-submit-wrap">
               <button type="submit" class="btn-gold" style="padding:16px 52px;font-size:12px">
@@ -1131,25 +1131,60 @@
   }
 
   // ---- Career form submit ----
-  const careerForm = document.getElementById('careerForm');
-  if (careerForm) {
-    careerForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const btn = this.querySelector('button[type="submit"]');
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-check"></i> <span>Application Submitted!</span>';
-      btn.style.background = 'linear-gradient(135deg,#2d7a4a,#3d9a5a)';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = orig;
-        btn.style.background = '';
-        btn.disabled = false;
+// ---- Career form submit ----
+const careerForm = document.getElementById('careerForm');
+
+if (careerForm) {
+  careerForm.addEventListener("submit", async function (e) {
+
+    e.preventDefault();
+
+    const btn = this.querySelector('button[type="submit"]');
+    const orig = btn.innerHTML;
+
+    btn.innerHTML = "Submitting...";
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+
+    try {
+
+      const response = await fetch("https://ibs-backend-adqo.onrender.com/apply-job", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        btn.innerHTML = '<i class="fas fa-check"></i> Application Submitted!';
+        btn.style.background = "green";
+
         this.reset();
-        fileDisplay.textContent = 'PDF, DOC, or DOCX — max 5MB';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 4000);
-    });
-  }
+
+        document.getElementById("file-name-display").textContent =
+          "PDF, DOC, or DOCX — max 5MB";
+
+      } else {
+        alert("Application failed");
+      }
+
+    } catch (error) {
+
+      console.error(error);
+      alert("Server error");
+
+    }
+
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.disabled = false;
+      btn.style.background = "";
+    }, 3000);
+
+  });
+}
 </script>
 
 </body>
