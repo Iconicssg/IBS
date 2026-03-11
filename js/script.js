@@ -350,6 +350,9 @@
     }, 700 + Math.random() * 500);
   }
 
+
+  
+
   chatToggle.addEventListener('click', function () {
     chatWindow.classList.toggle('open');
     if (chatNotif) chatNotif.style.display = 'none';
