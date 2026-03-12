@@ -862,8 +862,16 @@ input, textarea, select { font-family: var(--font-body); }
 .map-wrap {
   height: 260px; border-radius: 3px;
   overflow: hidden; border: 1px solid var(--border-dark); margin-top: 28px;
+  transition: var(--trans);
 }
-.map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(100%) invert(90%) contrast(88%); }
+.map-wrap iframe { 
+  width: 100%; height: 100%; border: none; 
+  filter: grayscale(100%) invert(90%) contrast(88%);
+  transition: filter 0.35s ease;
+}
+.map-wrap:hover iframe {
+  filter: none;
+}
 
 /* ========================
    FOOTER
@@ -1244,4 +1252,47 @@ body.js-ready .reveal.revealed {
   .stat-item + .stat-item::before { display: none; }
   .footer-bottom  { flex-direction: column; text-align: center; }
   .hero-container { padding: 110px 20px 60px; }
+}
+
+
+/* ========================
+   FORM VALIDATION UI
+======================== */
+.error-msg {
+  color: #ff4b4b;
+  font-size: 12px;
+  margin-top: 6px;
+  display: none;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  animation: fadeIn 0.3s ease;
+}
+
+.validate-input.is-invalid,
+.career-form .validate-input.is-invalid {
+  border-color: #ff4b4b !important;
+  background: rgba(255, 75, 75, 0.04) !important;
+  box-shadow: 0 0 0 3px rgba(255, 75, 75, 0.1) !important;
+}
+
+.validate-input.is-valid,
+.career-form .validate-input.is-valid {
+  border-color: #25d366 !important;
+  background: rgba(37, 211, 102, 0.04) !important;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1) !important;
+}
+
+.file-upload-wrap.is-invalid {
+  border-color: #ff4b4b !important;
+  background: rgba(255, 75, 75, 0.04) !important;
+}
+
+.file-upload-wrap.is-valid {
+  border-color: #25d366 !important;
+  background: rgba(37, 211, 102, 0.04) !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
 }

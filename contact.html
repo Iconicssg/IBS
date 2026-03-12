@@ -67,7 +67,14 @@
           </div>
           <div class="ci-card">
             <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div><div class="ci-lbl">Office Address</div><div class="ci-val">Iconic Business Solution, White Square, 304<br>Hinjewadi - Wakad Rd, Hinjawadi<br>Pimpri-Chinchwad, Maharashtra 411057</div></div>
+            <div>
+              <div class="ci-lbl">Office Address</div>
+              <div class="ci-val">
+                <a href="https://www.google.com/maps/search/?api=1&query=Iconic+Business+Solution%2C+White+Square%2C+304%2C+Hinjewadi+-+Wakad+Rd%2C+Hinjawadi%2C+Pimpri-Chinchwad%2C+Maharashtra+411057" target="_blank" rel="noopener noreferrer">
+                  Iconic Business Solution, White Square, 304<br>Hinjewadi - Wakad Rd, Hinjawadi<br>Pimpri-Chinchwad, Maharashtra 411057
+                </a>
+              </div>
+            </div>
           </div>
           <div class="ci-card">
             <div class="ci-icon"><i class="fas fa-clock"></i></div>
@@ -92,23 +99,20 @@
           <div class="form-box-sub">Fill in the form below and our team will respond within 24 business hours.</div>
           <div class="form-success" id="form-success">✓ Thank you! Your message has been sent. We'll be in touch shortly.</div>
           <form id="contact-form">
-            <div class="form-row">
-              <div class="form-grp">
-                <label for="fname">First Name *</label>
-                <input type="text" id="fname" name="fname" placeholder="John" required>
-              </div>
-              <div class="form-grp">
-                <label for="lname">Last Name *</label>
-                <input type="text" id="lname" name="lname" placeholder="Smith" required>
-              </div>
+            <div class="form-grp">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="John Smith" class="validate-input" required>
+              <div class="error-msg" id="nameError"></div>
             </div>
             <div class="form-grp">
               <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" placeholder="john@company.com" required>
+              <input type="email" id="email" name="email" placeholder="john@company.com" class="validate-input" required>
+              <div class="error-msg" id="emailError"></div>
             </div>
             <div class="form-grp">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" class="validate-input" required>
+              <div class="error-msg" id="phoneError"></div>
             </div>
             <div class="form-grp">
               <label for="company">Company Name</label>
@@ -127,10 +131,12 @@
                 <option>Multiple Services</option>
                 <option>General Enquiry</option>
               </select>
+              <div class="error-msg" id="serviceError"></div>
             </div>
             <div class="form-grp">
               <label for="message">Your Message *</label>
-              <textarea id="message" name="message" placeholder="Tell us about your requirements and how we can help your business..." required></textarea>
+              <textarea id="message" name="message" placeholder="Tell us about your requirements and how we can help your business..." class="validate-input" required></textarea>
+              <div class="error-msg" id="messageError"></div>
             </div>
             <button type="submit" class="btn-gold" style="width:100%;justify-content:center;padding:17px">
               <span>Send Message</span> <i class="fas fa-paper-plane"></i>

@@ -809,27 +809,32 @@
         <p>All fields marked with * are required. We respect your privacy and will never share your data.</p>
       </div>
       <div class="application-body">
+        <div class="form-success" id="career-form-success" style="display:none;margin-bottom:20px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);border-radius:2px;padding:14px 18px;font-size:16px;color:#25d366;text-align:center;">✓ Your job application has been submitted successfully.</div>
         <form id="careerForm" class="career-form" enctype="multipart/form-data">
           <div class="form-grid">
 
             <div class="form-group">
               <label for="fullName">Full Name *</label>
-              <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+              <input type="text" id="fullName" name="fullName" placeholder="Your full name" class="validate-input" required>
+              <div class="error-msg" id="fullNameError"></div>
             </div>
 
             <div class="form-group">
               <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" placeholder="you@email.com" required>
+              <input type="email" id="email" name="email" placeholder="you@email.com" class="validate-input" required>
+              <div class="error-msg" id="careerEmailError"></div>
             </div>
 
             <div class="form-group">
               <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" required>
+              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" class="validate-input" required>
+              <div class="error-msg" id="careerPhoneError"></div>
             </div>
 
             <div class="form-group">
               <label for="city">City / Country *</label>
-              <input type="text" id="city" name="city" placeholder="Pune" required>
+              <input type="text" id="city" name="city" placeholder="Pune" class="validate-input" required>
+              <div class="error-msg" id="cityError"></div>
             </div>
 
             <div class="form-group">
@@ -843,11 +848,12 @@
                 <option value="5-8">5–8 Years</option>
                 <option value="8+">8+ Years</option>
               </select>
+              <div class="error-msg" id="experienceError"></div>
             </div>
 
             <div class="form-group">
               <label for="position">Position Applying For *</label>
-              <select id="position" name="position" required>
+              <select id="position" name="position" class="validate-input" required>
                 <option value="" disabled selected>Select a position</option>
                 <option>Customer Support Executive</option>
                 <option>Technical Support Executive</option>
@@ -860,6 +866,7 @@
                 <option>Senior Talent Acquisition Specialist</option>
                 <option>Other / General Application</option>
               </select>
+              <div class="error-msg" id="positionError"></div>
             </div>
 
             <div class="form-group">
@@ -882,24 +889,26 @@
             <div class="form-group form-full">
               <label>Upload Resume / CV *</label>
               <div class="file-upload-wrap" id="file-drop-zone">
-                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="validate-input" required>
                 <div class="file-upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                 <div class="file-upload-text">
                   <strong>Click to upload</strong> or drag & drop your CV here
                 </div>
-                <div class="file-hint" id="file-name-display">PDF, DOC, or DOCX — max 5MB</div>
+                <div class="file-hint" id="file-name-display">PDF or DOCX — max 2MB</div>
               </div>
+              <div class="error-msg" id="resumeError"></div>
             </div>
 
             <!-- <div class="form-group form-full">
               <label for="linkedin">LinkedIn Profile URL</label>
               <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
             </div> -->
-<!-- 
+
             <div class="form-group form-full">
-              <label for="coverLetter">Cover Letter / Why Iconic Business Solution? *</label>
-              <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you want to join Iconic Business Solution and what makes you the right fit for this role..." required></textarea>
-            </div> -->
+              <label for="coverLetter">Cover Letter / Message</label>
+              <textarea id="coverLetter" name="coverLetter" rows="4" class="validate-input" placeholder="Optional: Tell us why you want to join Iconic Business Solution..."></textarea>
+              <div class="error-msg" id="coverLetterError"></div>
+            </div>
 
             <div class="form-submit-wrap">
               <button type="submit" class="btn-gold" style="padding:16px 52px;font-size:12px">
