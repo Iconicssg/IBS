@@ -243,7 +243,7 @@
     },
     email: function(value) {
       if (!value) return "Email address is required.";
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
       if (!emailRegex.test(value)) return "Please enter a valid email address.";
       return "";
     },
