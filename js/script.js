@@ -386,6 +386,7 @@
     // Submitting the form
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      let isValid = true;
       let firstInvalidInput = null;
 
       Object.keys(config).forEach(fieldId => {
@@ -468,6 +469,30 @@
               submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
               submitBtn.style.background = 'linear-gradient(135deg, #1a7a40, #25c060)';
               if (successEl) successEl.style.display = 'block';
+              
+              // --- WHATSAPP INTEGRATION ---
+              const name = document.getElementById('name').value.trim();
+              const email = document.getElementById('email').value.trim();
+              const phone = document.getElementById('phone').value.trim();
+              const company = document.getElementById('company').value.trim() || 'N/A';
+              const service = document.getElementById('service').value;
+              const msg = document.getElementById('message').value.trim();
+              
+              const whatsappText = `*New Contact Request*
+*Name:* ${name}
+*Email:* ${email}
+*Phone:* ${phone}
+*Company:* ${company}
+*Service:* ${service}
+
+*Message:*
+${msg}`;
+
+              const encodedText = encodeURIComponent(whatsappText);
+              const whatsappUrl = `https://wa.me/919226449358?text=${encodedText}`;
+              
+              // Open WhatsApp natively in the current tab to avoid popup blockers
+              window.location.href = whatsappUrl;
               
               setTimeout(function() {
                 submitBtn.innerHTML = origHtml;
