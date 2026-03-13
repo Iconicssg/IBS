@@ -250,11 +250,24 @@
     phone: function(value) {
       if (!value) return "Please enter your phone number.";
       const phoneRegex = /^\d{10}$/;
-      if (!phoneRegex.test(value.replace(/[\s-]/g, ''))) return "Enter a valid phone number.";
+      if (!phoneRegex.test(value.replace(/[\s-]/g, ''))) return "Please enter a valid phone number.";
       return "";
     },
     select: function(value) {
       if (!value || value === "") return "Please select an option.";
+      return "";
+    },
+    city: function(value) {
+      if (!value) return "Please Enter the Valid Country";
+      if (!/^[A-Za-z\s()]{2,50}$/.test(value)) return "Please Enter the Valid Country";
+      return "";
+    },
+    salary: function(value) {
+      if (!value) return "Please Enter The Valid Salary";
+      if (!/^[0-9]+(\.[0-9]{1,2})?$/.test(value)) return "Please Enter The Valid Salary";
+      
+      const num = parseFloat(value);
+      if (isNaN(num) || num < 0 || num > 1000000) return "Salary must be between 0 and 1,000,000";
       return "";
     },
     message: function(value, min = 10, max = 500, required = true) {
@@ -263,10 +276,10 @@
       return "";
     },
     file: function(file) {
-      if (!file) return "Resume upload is required.";
+      if (!file) return "Please Upload Resume File";
       const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
-      if (!validTypes.includes(file.type)) return "Only PDF or DOCX files are allowed.";
-      if (file.size > 2 * 1024 * 1024) return "Maximum file size is 2MB.";
+      if (!validTypes.includes(file.type)) return "Only PDF, DOC, DOCX Files Are Allowed";
+      if (file.size > 5 * 1024 * 1024) return "File Size Must Be Less Than 5MB";
       return "";
     }
   };
@@ -317,7 +330,19 @@
 
       const rule = config[fieldId];
       if (input.type === 'file') {
+        let cachedFile = null;
+
         input.addEventListener('change', function() {
+          // Bug 4: Resume File Upload Disappearing Fix
+          // If User cancels the file input dialog, files.length becomes 0
+          if (input.files.length === 0 && cachedFile) {
+             const dt = new DataTransfer();
+             dt.items.add(cachedFile);
+             input.files = dt.files;
+          } else if (input.files.length > 0) {
+             cachedFile = input.files[0];
+          }
+
           const errorMsg = rule(input.files[0]);
           if (errorMsg) showError(input, errorMsg, fieldId + 'Error');
           else setValid(input, fieldId + 'Error');
@@ -325,7 +350,7 @@
           // Update file name text
           const displayEl = document.getElementById('file-name-display');
           if (displayEl && input.files[0]) displayEl.textContent = input.files[0].name;
-          else if (displayEl) displayEl.textContent = "PDF or DOCX — max 2MB";
+          else if (displayEl) displayEl.textContent = "PDF or DOCX — max 5MB";
         });
       } else {
         const events = ['input', 'blur', 'change'];
@@ -333,9 +358,8 @@
           input.addEventListener(evt, function() {
             const errorMsg = rule(input.value.trim());
             
-            // Special case logic: clear error immediately if empty and blur wasn't the trigger,
-            // EXCEPT if it's required and blur happened. This allows "soft" typing feedback.
-            if (evt === 'input' && errorMsg && input.value.trim() === '') {
+            // Remove the immediate clearer to enforce stricter checking and showing errors on empty mandatory fields
+            /*if (evt === 'input' && errorMsg && input.value.trim() === '') {
                 // Clear UI immediately if they backspace to empty
                 input.classList.remove('is-invalid', 'is-valid');
                 const errorEl = document.getElementById(fieldId + (fieldId === 'email' && formId === 'careerForm' ? 'Error' : 'Error'));
@@ -346,7 +370,7 @@
                 const err = document.getElementById(actualErrorId);
                 if (err) err.style.display = 'none';
                 return;
-            }
+            }*/
 
             let actualErrorId = fieldId + 'Error';
             if(fieldId === 'email' && formId === 'careerForm') actualErrorId = 'careerEmailError';
@@ -362,7 +386,7 @@
     // Submitting the form
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      let isValid = true;
+      let firstInvalidInput = null;
 
       Object.keys(config).forEach(fieldId => {
         const input = document.getElementById(fieldId);
@@ -378,36 +402,89 @@
         if (errorMsg) {
           showError(input, errorMsg, actualErrorId);
           isValid = false;
+          if (!firstInvalidInput) firstInvalidInput = input;
         } else {
           setValid(input, actualErrorId);
         }
       });
+      
+      if (!isValid && firstInvalidInput) {
+        firstInvalidInput.focus();
+      }
 
       if (isValid) {
         const submitBtn = form.querySelector('button[type="submit"]');
         let successEl = document.getElementById(formId === 'careerForm' ? 'career-form-success' : 'form-success');
         
-        if (submitBtn) {
-          const origHtml = submitBtn.innerHTML;
-          submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
-          submitBtn.style.background = 'linear-gradient(135deg, #1a7a40, #25c060)';
-          if (successEl) successEl.style.display = 'block';
-          
-          setTimeout(function() {
-            submitBtn.innerHTML = origHtml;
-            submitBtn.style.background = '';
-            form.reset();
-            
-            // clear borders
-            form.querySelectorAll('.validate-input').forEach(el => {
-                el.classList.remove('is-valid');
-                el.classList.remove('is-invalid');
+        if (formId === 'careerForm') {
+            const origHtml = submitBtn.innerHTML;
+            submitBtn.innerHTML = "Submitting...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            fetch("https://ibs-backend-adqo.onrender.com/apply-job", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Application Submitted!';
+                    submitBtn.style.background = "green";
+                    if (successEl) successEl.style.display = 'block';
+
+                    setTimeout(function() {
+                        submitBtn.innerHTML = origHtml;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = '';
+                        form.reset();
+                        
+                        form.querySelectorAll('.validate-input').forEach(el => {
+                            el.classList.remove('is-valid');
+                            el.classList.remove('is-invalid');
+                        });
+                        const fw = form.querySelector('.file-upload-wrap');
+                        if (fw) { fw.classList.remove('is-valid'); fw.classList.remove('is-invalid'); }
+                        
+                        document.getElementById("file-name-display").textContent = "PDF or DOCX — max 5MB";
+                        if (successEl) successEl.style.display = 'none';
+                    }, 3500);
+                } else {
+                    alert("Application failed");
+                    submitBtn.innerHTML = origHtml;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Server error");
+                submitBtn.innerHTML = origHtml;
+                submitBtn.disabled = false;
             });
-            const fw = form.querySelector('.file-upload-wrap');
-            if (fw) { fw.classList.remove('is-valid'); fw.classList.remove('is-invalid'); }
-            
-            if (successEl) successEl.style.display = 'none';
-          }, 3500);
+        } else {
+            if (submitBtn) {
+              const origHtml = submitBtn.innerHTML;
+              submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
+              submitBtn.style.background = 'linear-gradient(135deg, #1a7a40, #25c060)';
+              if (successEl) successEl.style.display = 'block';
+              
+              setTimeout(function() {
+                submitBtn.innerHTML = origHtml;
+                submitBtn.style.background = '';
+                form.reset();
+                
+                // clear borders
+                form.querySelectorAll('.validate-input').forEach(el => {
+                    el.classList.remove('is-valid');
+                    el.classList.remove('is-invalid');
+                });
+                const fw = form.querySelector('.file-upload-wrap');
+                if (fw) { fw.classList.remove('is-valid'); fw.classList.remove('is-invalid'); }
+                
+                if (successEl) successEl.style.display = 'none';
+              }, 3500);
+            }
         }
       }
     });
@@ -427,6 +504,9 @@
     'fullName': validators.name,
     'email': validators.email,
     'phone': validators.phone,
+    'city': validators.city,
+    'salary': validators.salary,
+    'notice': (val) => (!val || val === "Select availability") ? "Please Select Availability / Notice Period" : "",
     'position': (val) => (!val || val === "Select a position") ? "Please select a position." : "",
     'resume': validators.file,
     'coverLetter': (val) => validators.message(val, 10, 500, false)

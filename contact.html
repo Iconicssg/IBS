@@ -98,10 +98,10 @@
           <div class="form-box-title">Send Us a Message</div>
           <div class="form-box-sub">Fill in the form below and our team will respond within 24 business hours.</div>
           <div class="form-success" id="form-success">✓ Thank you! Your message has been sent. We'll be in touch shortly.</div>
-          <form id="contact-form">
+          <form id="contact-form" novalidate>
             <div class="form-grp">
               <label for="name">Full Name *</label>
-              <input type="text" id="name" name="name" placeholder="John Smith" class="validate-input" required>
+              <input type="text" id="name" name="name" placeholder="John Smith" class="validate-input" minlength="4" maxlength="25" required>
               <div class="error-msg" id="nameError"></div>
             </div>
             <div class="form-grp">
@@ -111,7 +111,7 @@
             </div>
             <div class="form-grp">
               <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" class="validate-input" required>
+              <input type="tel" id="phone" name="phone" placeholder="+91 9226449358" class="validate-input" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
               <div class="error-msg" id="phoneError"></div>
             </div>
             <div class="form-grp">
